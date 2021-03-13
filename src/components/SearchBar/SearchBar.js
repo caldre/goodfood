@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import SearchList from "./SearchList/SearchList";
 
 const SearchBar = () => {
   const [searchItem, setSearchItem] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-
-  useEffect(() => {}, [searchItem]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,10 +18,6 @@ const SearchBar = () => {
       .then((data) => setSearchResults(data));
   };
 
-  const renderedSearchResults = searchResults.map((item) => {
-    return <li key={item.id}>{item.name.fi}</li>;
-  });
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -32,7 +27,7 @@ const SearchBar = () => {
         />
         <button type="submit">Hae hakusanalla</button>
       </form>
-      <ul>{renderedSearchResults}</ul>
+      <SearchList items={searchResults} />
     </div>
   );
 };
