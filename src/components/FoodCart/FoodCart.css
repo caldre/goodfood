@@ -5,9 +5,17 @@
 
   position: absolute;
   top: 10%;
-  left: 30%;
+  left: 50%;
   z-index: 1;
 
   min-width: 40vh;
   min-height: 50vh;
+}
+
+.kcal {
+  float: inline-end;
+}
+
+.TotalCalories {
+  position: right;
 }

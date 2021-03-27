@@ -5,7 +5,14 @@ export const addItem = (item) => {
   console.log("adding item");
   return {
     type: types.ADD_ITEM,
-    payload: { ...item, listId: uuid() },
+    payload: { ...item, listId: uuid(), focus: false },
+  };
+};
+
+export const changeFocus = (id) => {
+  return {
+    type: types.SWITCH_FOCUS,
+    payload: { id },
   };
 };
 

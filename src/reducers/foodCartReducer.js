@@ -1,22 +1,21 @@
-<<<<<<< HEAD
-import { ADD_ITEM } from "../actions/actionTypes";
+import { ADD_ITEM, SWITCH_FOCUS } from "../actions/actionTypes";
 
 export const foodCartReducer = (foodcart = [], action) => {
   switch (action.type) {
     case ADD_ITEM:
       console.log("red: adding item");
       return [...foodcart, action.payload];
+    case SWITCH_FOCUS:
+      console.log("focus");
+      const newFoodCart = foodcart.map((item) => {
+        if (item.listId === action.payload.id) {
+          item.focus = item.focus ? false : true;
+          return item;
+        } else return item;
+      });
+      console.log(newFoodCart);
+      return newFoodCart;
     default:
       return foodcart;
   }
-=======
-export const foodCartReducer = (
-  foodcart = [
-    { id: 1, name: "nakki", weight: 300 },
-    { id: 2, name: "nakki", weight: 300 },
-    { id: 3, name: "nakki", weight: 300 },
-  ]
-) => {
-  return foodcart;
->>>>>>> 5cbeb6b... välicommit
 };
