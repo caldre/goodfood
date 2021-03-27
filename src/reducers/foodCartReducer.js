@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { ADD_ITEM } from "../actions/actionTypes";
 
 export const foodCartReducer = (foodcart = [], action) => {
@@ -8,4 +9,14 @@ export const foodCartReducer = (foodcart = [], action) => {
     default:
       return foodcart;
   }
+=======
+export const foodCartReducer = (
+  foodcart = [
+    { id: 1, name: "nakki", weight: 300 },
+    { id: 2, name: "nakki", weight: 300 },
+    { id: 3, name: "nakki", weight: 300 },
+  ]
+) => {
+  return foodcart;
+>>>>>>> 5cbeb6b... välicommit
 };
