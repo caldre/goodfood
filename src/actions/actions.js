@@ -23,3 +23,11 @@ export const deleteMessage = (id) => {
   };
 };
  */
+
+export const populateSearchList = (searchList) => {
+  console.log(`Action: Populating search list`);
+  return {
+    type: types.POPULATE_LIST,
+    payload: searchList,
+  };
+};

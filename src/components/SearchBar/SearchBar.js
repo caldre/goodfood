@@ -1,33 +1,30 @@
 import React, { useState } from "react";
-import SearchList from "./SearchList/SearchList";
+import { useFetchFood } from "../../custom-hooks/useFetchFood";
+import { useDispatch } from "react-redux";
+import { populateSearchList } from "../../actions/actions";
+import _ from "lodash";
 
 const SearchBar = () => {
   const [searchItem, setSearchItem] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
 
-  const handleSubmit = async (e) => {
+  const dispatch = useDispatch();
+  const fetchedData = useFetchFood(searchItem, 2000);
+
+  const handleOnSubmit = (e) => {
     e.preventDefault();
-    await fetch("http://localhost:3001/searchitems", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ searchItem }),
-    })
-      .then((res) => res.json())
-      .then((data) => setSearchResults(data));
+    dispatch(populateSearchList(fetchedData));
+    setSearchItem("");
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleOnSubmit}>
         <input
           value={searchItem}
           onChange={(e) => setSearchItem(e.target.value)}
         />
         <button type="submit">Hae hakusanalla</button>
       </form>
-      <SearchList items={searchResults} />
     </div>
   );
 };

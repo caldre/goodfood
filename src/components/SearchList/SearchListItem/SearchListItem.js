@@ -1,5 +1,5 @@
 import React from "react";
-import { addItem } from "../../../../actions/actions";
+import { addItem } from "../../../actions/actions";
 import { useDispatch } from "react-redux";
 
 const SearchListItem = ({ item }) => {
