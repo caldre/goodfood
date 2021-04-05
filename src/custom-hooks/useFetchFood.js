@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import _ from "lodash";
 
 export const useFetchFood = (searchString, delay) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (!searchString) return [];
     const fetchData = async () => {
       await fetch("http://localhost:3001/searchitems", {
         method: "post",
@@ -22,7 +21,9 @@ export const useFetchFood = (searchString, delay) => {
         });
     };
 
-    fetchData();
+    const debouncedSearch = _.debounce(fetchData, 2000);
+
+    debouncedSearch();
   }, [searchString]);
 
   return data;

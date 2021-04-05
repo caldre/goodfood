@@ -1,12 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import FoodCartItem from "./FoodCartItem/FoodCartItem";
 
 const FoodCart = () => {
-  const fooditems = useSelector((state) => state.foodCartReducer);
-  const renderedfooditems = fooditems.map((fooditem) => {
-    return <div key={fooditem.listId}>{fooditem.name.fi}</div>;
+  const items = useSelector((state) => state.foodCartReducer);
+  const renderedFoodCart = items.map((item) => {
+    return <FoodCartItem key={item.listId} item={item} />;
   });
-  return renderedfooditems;
+  return <ul>{renderedFoodCart}</ul>;
 };
 
 export default FoodCart;

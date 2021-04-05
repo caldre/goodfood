@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFetchFood } from "../../custom-hooks/useFetchFood";
 import { useDispatch } from "react-redux";
 import { populateSearchList } from "../../actions/actions";
@@ -8,22 +8,45 @@ const SearchBar = () => {
   const [searchItem, setSearchItem] = useState("");
 
   const dispatch = useDispatch();
-  const fetchedData = useFetchFood(searchItem, 2000);
+  // const fetchedData = useFetchFood(searchItem);
 
-  const handleOnSubmit = (e) => {
+  useEffect(() => {
+    if (!searchItem) return dispatch(populateSearchList([]));
+
+    const fetchData = async () => {
+      await fetch("http://localhost:3001/searchitems", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ searchItem }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Fetching..");
+          console.log(data);
+          dispatch(populateSearchList(data));
+        });
+    };
+
+    fetchData();
+  }, [searchItem, dispatch]);
+
+  const handleChange = _.debounce((searchTerm) => {
+    setSearchItem(searchTerm);
+  }, 500);
+
+  const handleClick = (e) => {
     e.preventDefault();
-    dispatch(populateSearchList(fetchedData));
     setSearchItem("");
   };
 
   return (
     <div>
-      <form onSubmit={handleOnSubmit}>
-        <input
-          value={searchItem}
-          onChange={(e) => setSearchItem(e.target.value)}
-        />
-        <button type="submit">Hae hakusanalla</button>
+      <form>
+        <label>Tuote</label>
+        <input onChange={(e) => handleChange(e.target.value)} />
+        <button onClick={handleClick}>X</button>
       </form>
     </div>
   );

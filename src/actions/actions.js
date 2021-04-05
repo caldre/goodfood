@@ -1,11 +1,20 @@
 import * as types from "./actionTypes";
 import { v4 as uuid } from "uuid";
 
-export const addItem = (item) => {
+export const addItem = (item, amount) => {
   console.log("adding item");
   return {
     type: types.ADD_ITEM,
-    payload: { ...item, listId: uuid() },
+    payload: {
+      id: item.id,
+      name: item.name.fi,
+      listId: uuid(),
+      carbohydrate: (amount / 100) * item.carbohydrate,
+      energyKcal: (amount / 100) * item.energyKcal,
+      fat: (amount / 100) * item.fat,
+      protein: (amount / 100) * item.protein,
+      amount,
+    },
   };
 };
 
