@@ -5,3 +5,4 @@ export const DELETE_ITEM = "DELETE_ITEM";
 
 // Actions for handling searchResultReducer
 export const POPULATE_LIST = "POPULATE_LIST";
+export const SWITCH_FOCUS = "SWITCH_FOCUS";
