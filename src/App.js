@@ -10,10 +10,10 @@ import "./App.css";
 const App = () => {
   return (
     <div>
-      <TotalCalculation />
       <FoodCart />
       <SearchBar />
       <SearchList />
+      <TotalCalculation />
     </div>
   );
 };

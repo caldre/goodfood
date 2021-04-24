@@ -4,7 +4,7 @@ export const searchResultsReducer = (searchResults = [], action) => {
   switch (action.type) {
     case POPULATE_LIST:
       console.log("REDUCER: Populating search list with fetched items");
-      return action.payload;
+      return action.payload || [];
     default:
       return searchResults;
   }

@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useFetchFood } from "../../custom-hooks/useFetchFood";
+import React, { useState, useEffect, useRef } from "react";
+// import { useFetchFood } from "../../custom-hooks/useFetchFood";
 import { useDispatch } from "react-redux";
 import { populateSearchList } from "../../actions/actions";
 import _ from "lodash";
 
 const SearchBar = () => {
   const [searchItem, setSearchItem] = useState("");
-
+  const inputEl = useRef("");
   const dispatch = useDispatch();
-  // const fetchedData = useFetchFood(searchItem);
 
   useEffect(() => {
     if (!searchItem) return dispatch(populateSearchList([]));
@@ -23,8 +22,6 @@ const SearchBar = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("Fetching..");
-          console.log(data);
           dispatch(populateSearchList(data));
         });
     };
@@ -32,21 +29,19 @@ const SearchBar = () => {
     fetchData();
   }, [searchItem, dispatch]);
 
+  useEffect(() => {
+    inputEl.current = searchItem;
+  }, [searchItem]);
+
   const handleChange = _.debounce((searchTerm) => {
     setSearchItem(searchTerm);
   }, 500);
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    setSearchItem("");
-  };
 
   return (
     <div>
       <form>
         <label>Tuote</label>
-        <input onChange={(e) => handleChange(e.target.value)} />
-        <button onClick={handleClick}>X</button>
+        <input ref={inputEl} onChange={(e) => handleChange(e.target.value)} />
       </form>
     </div>
   );

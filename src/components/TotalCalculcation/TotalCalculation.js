@@ -24,29 +24,27 @@ const TotalCalculation = () => {
     initialValue
   );
 
-  return (
-    <div>
-      <h2>TOTAL</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Proteiini (g)</th>
-            <th>Hiilihydraatit (g)</th>
-            <th>Rasva (g)</th>
-            <th>Kilokalorit (kcal)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{totalProtein.toFixed(2)}</td>
-            <td>{totalCarbohydrate.toFixed(2)}</td>
-            <td>{totalFat.toFixed(2)}</td>
-            <td>{totalEnergyKcal.toFixed(2)}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  );
+  return items.length !== 0 ? (
+    <table>
+      <caption>Elintarviketiedot kaikista lisätyistä tuotteista</caption>
+      <thead>
+        <tr>
+          <th>Proteiini (g)</th>
+          <th>Hiilihydraatit (g)</th>
+          <th>Rasva (g)</th>
+          <th>Kilokalorit (kcal)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{totalProtein.toFixed(2)}</td>
+          <td>{totalCarbohydrate.toFixed(2)}</td>
+          <td>{totalFat.toFixed(2)}</td>
+          <td>{totalEnergyKcal.toFixed(2)}</td>
+        </tr>
+      </tbody>
+    </table>
+  ) : null;
 };
 
 export default TotalCalculation;

@@ -1,30 +1,25 @@
-import { useState, useEffect, useCallback } from "react";
-import _ from "lodash";
+import { useEffect } from "react";
 
-export const useFetchFood = (searchString, delay) => {
-  const [data, setData] = useState([]);
-
+export const useFetchFood = (searchItem) => {
   useEffect(() => {
+    if (!searchItem) return [];
+
     const fetchData = async () => {
       await fetch("http://localhost:3001/searchitems", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ searchString }),
+        body: JSON.stringify({ searchItem }),
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("Fetch hook active");
+          console.log("Fetching..");
           console.log(data);
-          setData(data);
+          return data;
         });
     };
 
-    const debouncedSearch = _.debounce(fetchData, 2000);
-
-    debouncedSearch();
-  }, [searchString]);
-
-  return data;
+    fetchData();
+  }, [searchItem]);
 };

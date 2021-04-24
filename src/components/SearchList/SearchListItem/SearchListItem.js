@@ -44,7 +44,9 @@ const SearchListItem = ({ item }) => {
             </tbody>
           </table>
           <form onSubmit={handleSubmit}>
+            <label htmlFor="elintarvike">Paino (g)</label>
             <input
+              name="elintarvike"
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
