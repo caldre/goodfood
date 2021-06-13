@@ -1,6 +1,10 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+
 import React, { useState } from "react";
 import { addItem } from "../../../actions/actions";
 import { useDispatch } from "react-redux";
+import { css, jsx } from "@emotion/react";
 
 const SearchListItem = ({ item }) => {
   const [active, setActive] = useState(false);
@@ -20,15 +24,25 @@ const SearchListItem = ({ item }) => {
     dispatch(addItem(item, amount));
   };
 
+  const style = css`
+    color: red;
+  `;
+
+  const h3css = css`
+    cursor: pointer;
+  `;
+
   return (
     <li>
-      <h3 onClick={handleClickItem}>{item.name.fi}</h3>
+      <h3 css={h3css} onClick={handleClickItem}>
+        {item.name.fi}
+      </h3>
       {active ? (
         <React.Fragment>
           <table>
             <thead>
               <tr>
-                <th>Proteiini (g)</th>
+                <th css={style}>Proteiini (g)</th>
                 <th>Hiilihydraatit (g)</th>
                 <th>Rasva (g)</th>
                 <th>Kilokalorit (kcal)</th>
