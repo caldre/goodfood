@@ -1,4 +1,5 @@
 import React from "react";
+import { MainContent } from "../styled";
 import SearchListItem from "./SearchListItem/SearchListItem";
 import { useSelector } from "react-redux";
 
@@ -9,7 +10,11 @@ const SearchList = () => {
     return <SearchListItem key={item.id} item={item} />;
   });
 
-  return <ul>{renderedSearchResultItems}</ul>;
+  return (
+    <MainContent>
+      <ul>{renderedSearchResultItems}</ul>
+    </MainContent>
+  );
 };
 
 export default SearchList;

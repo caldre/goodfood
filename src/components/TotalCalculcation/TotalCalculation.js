@@ -1,5 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import styled from "@emotion/styled";
+
+import { Card } from "../styled";
 
 const TotalCalculation = () => {
   const initialstate = [{ carbohydrate: 0 }];
@@ -25,25 +28,27 @@ const TotalCalculation = () => {
   );
 
   return items.length !== 0 ? (
-    <table>
-      <caption>Elintarviketiedot kaikista lisätyistä tuotteista</caption>
-      <thead>
-        <tr>
-          <th>Proteiini (g)</th>
-          <th>Hiilihydraatit (g)</th>
-          <th>Rasva (g)</th>
-          <th>Kilokalorit (kcal)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>{totalProtein.toFixed(2)}</td>
-          <td>{totalCarbohydrate.toFixed(2)}</td>
-          <td>{totalFat.toFixed(2)}</td>
-          <td>{totalEnergyKcal.toFixed(2)}</td>
-        </tr>
-      </tbody>
-    </table>
+    <Card style={{ alignSelf: "flex-end", justifySelf: "flex-end" }}>
+      <table>
+        <caption>Elintarviketiedot kaikista lisätyistä tuotteista</caption>
+        <thead>
+          <tr>
+            <th>Proteiini (g)</th>
+            <th>Hiilihydraatit (g)</th>
+            <th>Rasva (g)</th>
+            <th>Kilokalorit (kcal)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{totalProtein.toFixed(2)}</td>
+            <td>{totalCarbohydrate.toFixed(2)}</td>
+            <td>{totalFat.toFixed(2)}</td>
+            <td>{totalEnergyKcal.toFixed(2)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </Card>
   ) : null;
 };
 

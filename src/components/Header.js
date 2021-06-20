@@ -1,4 +1,5 @@
 import React from "react";
+import { MainContent } from "./styled";
 
 const Header = () => {
   return (

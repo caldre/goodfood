@@ -6,6 +6,12 @@ export const Card = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 1rem 2rem;
-  background: var(--primary-5);
+  background: var(--neutral-7);
+`;
+
+export const MainContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 `;

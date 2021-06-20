@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { populateSearchList } from "../../actions/actions";
 import _ from "lodash";
 import styled from "@emotion/styled";
-import { Card } from "../styled";
+import { MainContent, Card } from "../styled";
 
 const SearchBar = () => {
   const [searchItem, setSearchItem] = useState("");
@@ -58,15 +58,6 @@ const SearchBar = () => {
     </Card>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 2rem;
-  background: linear-gradient(45deg, var(--primary-1), var(--primary-5));
-`;
 
 const Label = styled.label`
   display: block;
